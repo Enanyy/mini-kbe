@@ -41,5 +41,5 @@ using namespace KBEngine;
 int KBENGINE_MAIN(int argc, char* argv[])
 {
 	ENGINE_COMPONENT_INFO& info = g_kbeSrvConfig.getCellAppMgr();
-	return kbeMainT<MyCellMgrApp>(argc, argv, CELLAPPMGR_TYPE, -1, -1, "", info.port, info.ip.c_str());
+	return kbeMainT<CellMgrApp>(argc, argv, CELLAPPMGR_TYPE, -1, -1, "", info.port, info.ip.c_str());
 }

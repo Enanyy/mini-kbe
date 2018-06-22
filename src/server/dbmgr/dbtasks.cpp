@@ -32,7 +32,7 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 #include "db_interface/kbe_tables.h"
 #include "common/md5.h"
 
-#include "proto/ldb.pb.h"
+#include "proto/dbmgrlogin.pb.h"
 #include "../../server/login/login_interface.h"
 
 #if KBE_PLATFORM == PLATFORM_WIN32
@@ -223,7 +223,7 @@ thread::TPTask::TPTaskState DBTaskAccountLogin::presentMainThread()
 	// 一个用户登录， 构造一个数据库查询指令并加入到执行队列， 执行完毕将结果返回给loginapp
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	pBundle->newMessage(LoginappInterface::onLoginAccountQueryResultFromDbmgr);
-	login_dbmgr::AccountLoginQueryResult lqrCmd;
+	dbmgrlogin::AccountLogin_Return lqrCmd;
 	lqrCmd.set_retcode(retcode_);
 	lqrCmd.set_loginname(accountName_);
 	lqrCmd.set_accountname(accountName_);

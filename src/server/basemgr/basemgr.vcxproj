@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -26,6 +34,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -110,9 +124,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\proto\bmb.pb.cc" />
-    <ClCompile Include="..\..\lib\proto\coms.pb.cc" />
-    <ClCompile Include="..\..\lib\proto\lbm.pb.cc" />
+    <ClCompile Include="..\..\lib\proto\basemgrbase.pb.cc" />
+    <ClCompile Include="..\..\lib\proto\basemgrlogin.pb.cc" />
+    <ClCompile Include="..\..\lib\proto\common.pb.cc" />
     <ClCompile Include="baseapp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="basemgr.cpp" />
@@ -162,6 +176,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lib\proto\basemgrbase.pb.h" />
+    <ClInclude Include="..\..\lib\proto\basemgrlogin.pb.h" />
+    <ClInclude Include="..\..\lib\proto\common.pb.h" />
     <ClInclude Include="baseapp.h" />
     <ClInclude Include="basemgr.h" />
     <ClInclude Include="basemgr_interface.h" />

@@ -25,8 +25,8 @@
 namespace KBEngine{
 
 
-class MyCellMgrApp:	public ServerApp, 
-	public Singleton<MyCellMgrApp>
+class CellMgrApp:	public ServerApp, 
+	public Singleton<CellMgrApp>
 {
 public:
 	enum TimeOutType
@@ -34,12 +34,12 @@ public:
 		TIMEOUT_TICK = TIMEOUT_SERVERAPP_MAX + 1
 	};
 
-	MyCellMgrApp(Network::EventDispatcher& dispatcher,
+	CellMgrApp(Network::EventDispatcher& dispatcher,
 		Network::NetworkInterface& ninterface, 
 		COMPONENT_TYPE componentType,
 		COMPONENT_ID componentID);
 
-	~MyCellMgrApp();
+	~CellMgrApp();
 	
 	bool run();
 	

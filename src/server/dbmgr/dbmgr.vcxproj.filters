@@ -24,17 +24,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\coms.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dbmgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dbmgr_interface.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\proto\ldb.pb.cc">
-      <Filter>pb</Filter>
     </ClCompile>
     <ClCompile Include="interfaces_handler.cpp">
       <Filter>Source Files</Filter>
@@ -45,10 +39,16 @@
     <ClCompile Include="sync_app_datas_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\basedb.pb.cc">
+    <ClCompile Include="..\..\lib\proto\common.pb.cc">
       <Filter>pb</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\celldb.pb.cc">
+    <ClCompile Include="..\..\lib\proto\dbmgrbase.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\dbmgrcell.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\dbmgrlogin.pb.cc">
       <Filter>pb</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +74,16 @@
     <ClInclude Include="sync_app_datas_handler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\proto\basedb.pb.h">
+    <ClInclude Include="..\..\lib\proto\common.pb.h">
       <Filter>pb</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\proto\celldb.pb.h">
+    <ClInclude Include="..\..\lib\proto\dbmgrbase.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\dbmgrcell.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\dbmgrlogin.pb.h">
       <Filter>pb</Filter>
     </ClInclude>
   </ItemGroup>

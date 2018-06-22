@@ -12,11 +12,12 @@
 #include "server/components.h"
 #include <sstream>
 
-#include "proto/coms.pb.h"
-#include "proto/ldb.pb.h"
-#include "proto/basedb.pb.h"
+#include "proto/common.pb.h"
+#include "proto/dbmgrlogin.pb.h"
+#include "proto/dbmgrbase.pb.h"
+#include "proto/dbmgrcell.pb.h"
+
 #include "../../server/baseapp/baseapp_interface.h"
-#include "proto/celldb.pb.h"
 #include "../../server/cellapp/cellapp_interface.h"
 
 namespace KBEngine{
@@ -199,7 +200,7 @@ bool DBMgrApp::canShutdown()
 void DBMgrApp::onAccountLogin(Network::Channel* pChannel, MemoryStream& s)
 {
 	std::string loginName, password, datas;
-	login_dbmgr::AccountLogin loginCmd;
+	dbmgrlogin::AccountLogin_Request loginCmd;
 	PARSEBUNDLE(s, loginCmd)
 
 	loginName = loginCmd.accountname();
@@ -222,7 +223,7 @@ void DBMgrApp::OnRegisterServer(Network::Channel* pChannel, /*KBEngine::*/Memory
 		return;
 	MemoryStream tempS(s);
 	ServerApp::OnRegisterServer(pChannel, s);
-	servercommon::RegisterSelf regCmd;
+	common::RegisterServer_Request regCmd;
 	PARSEBUNDLE(tempS, regCmd);
 	COMPONENT_TYPE componentType = (COMPONENT_TYPE)regCmd.componenttype();
 	uint32 uid = regCmd.uid();
@@ -244,8 +245,9 @@ void DBMgrApp::OnRegisterServer(Network::Channel* pChannel, /*KBEngine::*/Memory
 	}
 
 	pSyncAppDatasHandler_->pushApp(componentID);
-	ERROR_MSG(fmt::format("dbmgr OnRegisterServer  type:{0}, name:{1}\n ",
-		componentType, COMPONENT_NAME_EX(componentType)));
+	
+	INFO_MSG(fmt::format("DBMgrApp::OnRegisterServer  type:{0}, name:{1}\n ",componentType, COMPONENT_NAME_EX(componentType)));
+	
 	// 如果是baseapp或者cellapp则将自己注册到所有其他baseapp和cellapp
 	if (tcomponentType == BASEAPP_TYPE ||
 		tcomponentType == CELLAPP_TYPE)
@@ -268,7 +270,7 @@ void DBMgrApp::OnRegisterServer(Network::Channel* pChannel, /*KBEngine::*/Memory
 					//BaseappInterface::onGetEntityAppFromDbmgrArgs11::staticAddToBundle((*pBundle),
 					//	uid, username, componentType, componentID, startGlobalOrder, startGroupOrder,
 					//	intaddr, intport, extaddr, extport, g_kbeSrvConfig.getConfig().externalAddress);
-					base_dbmgr::GetEntityAppFromDbmgr geafCmd;
+					dbmgrbase::DbmgrBroadcastNewApp geafCmd;
 					geafCmd.set_componentid(regCmd.componentid());
 					geafCmd.set_componenttype(regCmd.componenttype());
 					geafCmd.set_uid(regCmd.uid());
@@ -277,14 +279,14 @@ void DBMgrApp::OnRegisterServer(Network::Channel* pChannel, /*KBEngine::*/Memory
 					geafCmd.set_intport(regCmd.intport());
 					geafCmd.set_extaddr(regCmd.extaddr());
 					geafCmd.set_extport(regCmd.extport());
-					ERROR_MSG(fmt::format("onGetEntityAppFromDbmgr: baseapp  ip:{0}, "
+					INFO_MSG(fmt::format("onGetEntityAppFromDbmgr: baseapp  ip:{0}, "
 						"port:{1} cmd:{2}/{3} \n",
 						regCmd.intaddr(), regCmd.intport(), pBundle->messageID()>>8, (uint8)pBundle->messageID()));
 					ADDTOBUNDLE((*pBundle), geafCmd);
 				}
 				else
 				{
-					cell_dbmgr::GetEntityAppFromDbmgr geafCmd;
+					dbmgrcell::DbmgrBroadcastNewApp geafCmd;
 					geafCmd.set_componentid(regCmd.componentid());
 					geafCmd.set_componenttype(regCmd.componenttype());
 					geafCmd.set_uid(regCmd.uid());
@@ -293,7 +295,7 @@ void DBMgrApp::OnRegisterServer(Network::Channel* pChannel, /*KBEngine::*/Memory
 					geafCmd.set_intport(regCmd.intport());
 					geafCmd.set_extaddr(regCmd.extaddr());
 					geafCmd.set_extport(regCmd.extport());
-					ERROR_MSG(fmt::format("onGetEntityAppFromDbmgr: celleapp  ip:{0}, "
+					INFO_MSG(fmt::format("onGetEntityAppFromDbmgr: celleapp  ip:{0}, "
 						"port:{1}  cmd:{2}/{3} \n",
 						regCmd.intaddr(), regCmd.intport(), pBundle->messageID() >> 8, (uint8)pBundle->messageID()));
 					ADDTOBUNDLE((*pBundle), geafCmd);

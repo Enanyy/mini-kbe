@@ -10,9 +10,11 @@
 #include "server/components.h"
 #include <sstream>
 
-#include "proto/lbm.pb.h"
+#include "proto/common.pb.h"
+#include "proto/basemgrlogin.pb.h"
+#include "proto/basemgrbase.pb.h"
+
 #include "../../server/login/login_interface.h"
-#include "proto/bmb.pb.h"
 #include "../../server/baseapp/baseapp_interface.h"
 
 namespace KBEngine{
@@ -155,7 +157,7 @@ void BaseMgrApp::onAddComponent(const Components::ComponentInfos* pInfos)
 		Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 		(*pBundle).newMessage(LoginappInterface::onBaseappInitProgress);
 
-		login_basemgr::BaseappInitProgress bipCmd;
+		basemgrlogin::BaseappInitProgress bipCmd;
 		bipCmd.set_baseappsinitprogress((DWORD)baseappsInitProgress_);
 		ADDTOBUNDLE((*pBundle), bipCmd)
 
@@ -181,7 +183,7 @@ void BaseMgrApp::updateBaseapp(Network::Channel* pChannel, COMPONENT_ID componen
 //-------------------------------------------------------------------------------------
 void BaseMgrApp::onBaseappInitProgress(Network::Channel* pChannel, MemoryStream& s)
 {
-	basemgr_base::BaseappInitProgress bipCmd;
+	basemgrbase::BaseappInitProgress bipCmd;
 	PARSEBUNDLE(s, bipCmd);
 	COMPONENT_ID cid = bipCmd.componentid();
 	float progress = bipCmd.progress()/100.0f;
@@ -231,7 +233,7 @@ void BaseMgrApp::onBaseappInitProgress(Network::Channel* pChannel, MemoryStream&
 		Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 
 		(*pBundle).newMessage(LoginappInterface::onBaseappInitProgress);
-		login_basemgr::BaseappInitProgress bipCmd;
+		basemgrlogin::BaseappInitProgress bipCmd;
 		bipCmd.set_baseappsinitprogress((DWORD)baseappsInitProgress_*100);
 		ADDTOBUNDLE((*pBundle), bipCmd)
 
@@ -284,7 +286,7 @@ void BaseMgrApp::onRegisterPendingAccount(Network::Channel* pChannel, MemoryStre
 	DBID entityDBID;
 	uint32 flags;
 
-	login_basemgr::RegisterPendingAccount rpaCmd;
+	basemgrlogin::PendingAccount_Request rpaCmd;
 	PARSEBUNDLE(s, rpaCmd)
 	loginName = rpaCmd.loginname();
 	accountName = rpaCmd.accountname();
@@ -312,7 +314,7 @@ void BaseMgrApp::onRegisterPendingAccount(Network::Channel* pChannel, MemoryStre
 		pFI->pBundle = pBundle;
 
 		(*pBundle).newMessage(BaseappInterface::registerPendingLogin);
-		basemgr_base::registerPendingLogin rplCmd;
+		basemgrbase::PendingLoginBaseappAddr_Request rplCmd;
 		rplCmd.set_loginname(loginName);
 		rplCmd.set_accountname(accountName);
 		rplCmd.set_password(password);
@@ -334,7 +336,7 @@ void BaseMgrApp::onRegisterPendingAccount(Network::Channel* pChannel, MemoryStre
 
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	(*pBundle).newMessage(BaseappInterface::registerPendingLogin);
-	basemgr_base::registerPendingLogin rplCmd;
+	basemgrbase::PendingLoginBaseappAddr_Request rplCmd;
 	rplCmd.set_loginname(loginName);
 	rplCmd.set_accountname(accountName);
 	rplCmd.set_password(password);
@@ -358,7 +360,7 @@ void BaseMgrApp::onRegisterPendingAccountEx(Network::Channel* pChannel, MemorySt
 	uint32 flags;
 	uint64 deadline;
 
-	login_basemgr::RegisterPendingAccountEx rpaxCmd;
+	basemgrlogin::PendingAccountEx_Request rpaxCmd;
 	PARSEBUNDLE(s, rpaxCmd)
 	loginName = rpaxCmd.loginname();
 	accountName = rpaxCmd.accountname();
@@ -369,13 +371,13 @@ void BaseMgrApp::onRegisterPendingAccountEx(Network::Channel* pChannel, MemorySt
 	componentID = rpaxCmd.componentid();
 	entityID = rpaxCmd.entityid();
 
-	DEBUG_MSG(fmt::format("Baseappmgr::registerPendingAccountToBaseappAddr:{0}, componentID={1}, entityID={2}.\n",
+	DEBUG_MSG(fmt::format("BaseMgrApp::registerPendingAccountToBaseappAddr:{0}, componentID={1}, entityID={2}.\n",
 		accountName, componentID, entityID));
 
 	Components::ComponentInfos* cinfos = Components::getSingleton().findComponent(pChannel);
 	if (cinfos == NULL || cinfos->pChannel == NULL)
 	{
-		ERROR_MSG("Baseappmgr::registerPendingAccountToBaseapp: not found loginapp!\n");
+		ERROR_MSG("BaseMgrApp::registerPendingAccountToBaseapp: not found loginapp!\n");
 		return;
 	}
 
@@ -384,7 +386,7 @@ void BaseMgrApp::onRegisterPendingAccountEx(Network::Channel* pChannel, MemorySt
 	cinfos = Components::getSingleton().findComponent(componentID);
 	if (cinfos == NULL || cinfos->pChannel == NULL)
 	{
-		ERROR_MSG(fmt::format("Baseappmgr::registerPendingAccountToBaseappAddr: not found baseapp({}).\n", componentID));
+		ERROR_MSG(fmt::format("BaseMgrApp::registerPendingAccountToBaseappAddr: not found baseapp({}).\n", componentID));
 		sendAllocatedBaseappAddr(pChannel, loginName, accountName, "", 0);
 		return;
 	}
@@ -392,7 +394,7 @@ void BaseMgrApp::onRegisterPendingAccountEx(Network::Channel* pChannel, MemorySt
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 
 	(*pBundle).newMessage(BaseappInterface::registerPendingLogin);
-	basemgr_base::registerPendingLogin rplCmd;
+	basemgrbase::PendingLoginBaseappAddr_Request rplCmd;
 	rplCmd.set_loginname(loginName);
 	rplCmd.set_accountname(accountName);
 	rplCmd.set_password(password);
@@ -425,7 +427,7 @@ void BaseMgrApp::sendAllocatedBaseappAddr(Network::Channel* pChannel,
 	Network::Bundle* pBundleToLoginapp = Network::Bundle::ObjPool().createObject();
 	(*pBundleToLoginapp).newMessage(LoginappInterface::onLoginAccountQueryBaseappAddrFromBaseappmgr);
 
-	login_basemgr::LoginAccountQueryBaseappAddrFromBaseappmgr laqbCmd;
+	basemgrlogin::LoginAccountBaseappAddr_Return laqbCmd;
 	laqbCmd.set_accountname(accountName);
 	laqbCmd.set_loginname(loginName);
 	laqbCmd.set_ip(addr);
@@ -442,7 +444,7 @@ void BaseMgrApp::onPendingAccountGetBaseappAddr(Network::Channel* pChannel, Memo
 	std::string addr;
 	uint16 port;
 
-	basemgr_base::PendingAccountGetBaseappAddr pagbaCmd;
+	basemgrbase::PendingLoginBaseappAddr_Return pagbaCmd;
 	PARSEBUNDLE(s, pagbaCmd)
 	loginName = pagbaCmd.loginname();
 	accountName = pagbaCmd.accountname();

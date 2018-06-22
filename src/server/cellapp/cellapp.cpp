@@ -11,7 +11,8 @@
 #include <sstream>
 
 #include "../../server/basemgr/basemgr_interface.h"
-#include "proto/celldb.pb.h"
+#include "proto/common.pb.h"
+#include "proto/dbmgrcell.pb.h"
 
 namespace KBEngine{
 	
@@ -115,7 +116,7 @@ void CellApp::onDbmgrInitCompleted(Network::Channel* pChannel, MemoryStream& s)
 {
 	if (pChannel->isExternal())
 		return;
-	ERROR_MSG(fmt::format("CellApp::onDbmgrInitCompleted\n"));
+	PRINT_MSG(fmt::format("CellApp::onDbmgrInitCompleted\n"));
 	s.done();
 	//cell_dbmgr::DbmgrInitCompleted dicCmd;
 	//PARSEBUNDLE(s, dicCmd);
@@ -136,13 +137,13 @@ void CellApp::onGetEntityAppFromDbmgr(Network::Channel* pChannel, MemoryStream& 
 	if (pChannel->isExternal())
 		return;
 
-	cell_dbmgr::GetEntityAppFromDbmgr geafCmd;
+	dbmgrcell::DbmgrBroadcastNewApp geafCmd;
 	PARSEBUNDLE(s, geafCmd);
 
 	Components::ComponentInfos* cinfos = Components::getSingleton().findComponent((
 		KBEngine::COMPONENT_TYPE)geafCmd.componenttype(), geafCmd.componentid());
 
-	ERROR_MSG(fmt::format("CellApp::onGetEntityAppFromDbmgr: app(uid:{0}, username:{1}, componentType:{2}, "
+	PRINT_MSG(fmt::format("CellApp::onGetEntityAppFromDbmgr: app(uid:{0}, username:{1}, componentType:{2}, "
 		"componentID:{3}\n",
 		geafCmd.uid(),
 		geafCmd.username(),

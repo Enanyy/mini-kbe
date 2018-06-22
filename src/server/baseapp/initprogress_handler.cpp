@@ -23,7 +23,7 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 #include "network/bundle.h"
 #include "network/channel.h"
 
-#include "proto/bmb.pb.h"
+#include "proto/basemgrbase.pb.h"
 #include "../../server/basemgr/basemgr_interface.h"
 
 namespace KBEngine{	
@@ -121,7 +121,7 @@ bool InitProgressHandler::process()
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 
 	(*pBundle).newMessage(BaseappmgrInterface::onBaseappInitProgress);
-	basemgr_base::BaseappInitProgress bipCmd;
+	basemgrbase::BaseappInitProgress bipCmd;
 	bipCmd.set_componentid(g_componentID);
 	bipCmd.set_progress((uint32)(v * 100));
 	pChannel->send(pBundle);

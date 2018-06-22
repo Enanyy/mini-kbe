@@ -24,16 +24,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\coms.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cellapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cellapp_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\celldb.pb.cc">
+    <ClCompile Include="..\..\lib\proto\common.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\dbmgrcell.pb.cc">
       <Filter>pb</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,10 @@
     <ClInclude Include="cellapp_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\proto\celldb.pb.h">
+    <ClInclude Include="..\..\lib\proto\common.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\dbmgrcell.pb.h">
       <Filter>pb</Filter>
     </ClInclude>
   </ItemGroup>

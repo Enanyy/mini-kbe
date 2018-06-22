@@ -16,12 +16,12 @@
     <Filter Include="Inline Files">
       <UniqueIdentifier>{5ed54725-f471-4e34-b542-4df3398d05ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="pb">
+      <UniqueIdentifier>{77df24bb-0fb1-43ef-91ce-593fee6d6372}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\proto\coms.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cellmgr.cpp">
@@ -29,6 +29,12 @@
     </ClCompile>
     <ClCompile Include="cellmgr_interface.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\common.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\dbmgrcell.pb.cc">
+      <Filter>pb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="cellmgr_interface.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\common.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\dbmgrcell.pb.h">
+      <Filter>pb</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

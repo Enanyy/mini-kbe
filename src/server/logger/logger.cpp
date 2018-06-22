@@ -10,7 +10,7 @@
 #include "server/components.h"
 #include <sstream>
 
-#include "proto/coms.pb.h"
+#include "proto/common.pb.h"
 
 namespace KBEngine{
 	

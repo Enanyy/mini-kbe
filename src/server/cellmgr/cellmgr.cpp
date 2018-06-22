@@ -13,10 +13,10 @@
 namespace KBEngine{
 	
 ServerConfig g_serverConfig;
-KBE_SINGLETON_INIT(MyCellMgrApp);
+KBE_SINGLETON_INIT(CellMgrApp);
 
 //-------------------------------------------------------------------------------------
-MyCellMgrApp::MyCellMgrApp(Network::EventDispatcher& dispatcher, 
+CellMgrApp::CellMgrApp(Network::EventDispatcher& dispatcher, 
 				 Network::NetworkInterface& ninterface, 
 				 COMPONENT_TYPE componentType,
 				 COMPONENT_ID componentID):
@@ -28,12 +28,12 @@ timer_()
 }
 
 //-------------------------------------------------------------------------------------
-MyCellMgrApp::~MyCellMgrApp()
+CellMgrApp::~CellMgrApp()
 {
 }
 
 //-------------------------------------------------------------------------------------		
-bool MyCellMgrApp::initializeWatcher()
+bool CellMgrApp::initializeWatcher()
 {
 	//ProfileVal::setWarningPeriod(stampsPerSecond() / g_kbeSrvConfig.gameUpdateHertz());
 
@@ -44,14 +44,14 @@ bool MyCellMgrApp::initializeWatcher()
 }
 
 //-------------------------------------------------------------------------------------
-bool MyCellMgrApp::run()
+bool CellMgrApp::run()
 {
 	dispatcher_.processUntilBreak();
 	return true;
 }
 
 //-------------------------------------------------------------------------------------
-void MyCellMgrApp::handleTimeout(TimerHandle handle, void * arg)
+void CellMgrApp::handleTimeout(TimerHandle handle, void * arg)
 {
 	switch (reinterpret_cast<uintptr>(arg))
 	{
@@ -66,7 +66,7 @@ void MyCellMgrApp::handleTimeout(TimerHandle handle, void * arg)
 }
 
 //-------------------------------------------------------------------------------------
-void MyCellMgrApp::handleTick()
+void CellMgrApp::handleTick()
 {
 
 	threadPool_.onMainThreadTick();
@@ -74,19 +74,19 @@ void MyCellMgrApp::handleTick()
 }
 
 //-------------------------------------------------------------------------------------
-bool MyCellMgrApp::initializeBegin()
+bool CellMgrApp::initializeBegin()
 {
 	return true;
 }
 
 //-------------------------------------------------------------------------------------
-bool MyCellMgrApp::inInitialize()
+bool CellMgrApp::inInitialize()
 {
 	return true;
 }
 
 //-------------------------------------------------------------------------------------
-bool MyCellMgrApp::initializeEnd()
+bool CellMgrApp::initializeEnd()
 {
 	// 由于logger接收其他app的log，如果跟踪包输出将会非常卡。
 	//Network::g_trace_packet = 0;
@@ -97,7 +97,7 @@ bool MyCellMgrApp::initializeEnd()
 }
 
 //-------------------------------------------------------------------------------------
-void MyCellMgrApp::finalise()
+void CellMgrApp::finalise()
 {
 
 	timer_.cancel();
@@ -105,11 +105,11 @@ void MyCellMgrApp::finalise()
 }
 
 //-------------------------------------------------------------------------------------	
-bool MyCellMgrApp::canShutdown()
+bool CellMgrApp::canShutdown()
 {
 	if(Components::getSingleton().getGameSrvComponentsSize() > 0)
 	{
-		INFO_MSG(fmt::format("MyCellMgrApp::canShutdown(): Waiting for components({}) destruction!\n", 
+		INFO_MSG(fmt::format("CellMgrApp::canShutdown(): Waiting for components({}) destruction!\n", 
 			Components::getSingleton().getGameSrvComponentsSize()));
 
 		return false;

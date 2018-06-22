@@ -11,9 +11,10 @@
 #include "server/components.h"
 #include <sstream>
 
-#include "proto/bmb.pb.h"
 #include "../../server/basemgr/basemgr_interface.h"
-#include "proto/basedb.pb.h"
+#include "proto/common.pb.h"
+#include "proto/dbmgrbase.pb.h"
+#include "proto/basemgrbase.pb.h"
 
 namespace KBEngine{
 	
@@ -141,7 +142,7 @@ void BaseApp::registerPendingLogin(Network::Channel* pChannel, MemoryStream& s)
 	DBID										entityDBID;
 	uint32										flags;
 
-	basemgr_base::registerPendingLogin rplCmd;
+	basemgrbase::PendingLoginBaseappAddr_Request rplCmd;
 	PARSEBUNDLE(s, rplCmd)
 	loginName = rplCmd.loginname();
 	accountName = rplCmd.accountname();
@@ -154,7 +155,7 @@ void BaseApp::registerPendingLogin(Network::Channel* pChannel, MemoryStream& s)
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	(*pBundle).newMessage(BaseappmgrInterface::onPendingAccountGetBaseappAddr);
 
-	basemgr_base::PendingAccountGetBaseappAddr pagbaCmd;
+	basemgrbase::PendingLoginBaseappAddr_Return pagbaCmd;
 	pagbaCmd.set_loginname(loginName);
 	pagbaCmd.set_accountname(accountName);
 	pagbaCmd.set_ip(inet_ntoa((struct in_addr&)networkInterface().extaddr().ip));
@@ -178,8 +179,8 @@ void BaseApp::onDbmgrInitCompleted(Network::Channel* pChannel, MemoryStream& s)
 {
 	if (pChannel->isExternal())
 		return;
-	ERROR_MSG(fmt::format("CellApp::onDbmgrInitCompleted\n"));
-	base_dbmgr::DbmgrInitCompleted dicCmd;
+	PRINT_MSG(fmt::format("CellApp::onDbmgrInitCompleted\n"));
+	dbmgrbase::DbmgrBroadcastInitCompleted dicCmd;
 	PARSEBUNDLE(s, dicCmd);
 
 	idClient_.onAddRange(dicCmd.startentityid(), dicCmd.endentityid());
@@ -198,13 +199,13 @@ void BaseApp::onGetEntityAppFromDbmgr(Network::Channel* pChannel, MemoryStream& 
 	if (pChannel->isExternal())
 		return;
 
-	base_dbmgr::GetEntityAppFromDbmgr geafCmd;
+	dbmgrbase::DbmgrBroadcastNewApp geafCmd;
 	PARSEBUNDLE(s, geafCmd);
 
 	Components::ComponentInfos* cinfos = Components::getSingleton().findComponent((
 		KBEngine::COMPONENT_TYPE)geafCmd.componenttype(), geafCmd.componentid());
 
-	ERROR_MSG(fmt::format("BaseApp::onGetEntityAppFromDbmgr: app(uid:{0}, username:{1}, componentType:{2}, "
+	PRINT_MSG(fmt::format("BaseApp::onGetEntityAppFromDbmgr: app(uid:{0}, username:{1}, componentType:{2}, "
 		"componentID:{3}\n",
 		geafCmd.uid(),
 		geafCmd.username(),

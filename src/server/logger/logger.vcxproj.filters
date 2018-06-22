@@ -16,6 +16,9 @@
     <Filter Include="Inline Files">
       <UniqueIdentifier>{5ed54725-f471-4e34-b542-4df3398d05ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="pb">
+      <UniqueIdentifier>{6dfac947-4ec1-4fdd-af84-f1697e4483d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,8 +30,8 @@
     <ClCompile Include="logger_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\coms.pb.cc">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\lib\proto\common.pb.cc">
+      <Filter>pb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

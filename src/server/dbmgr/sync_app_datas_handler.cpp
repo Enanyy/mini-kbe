@@ -27,9 +27,13 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 
 //#include "baseapp/baseapp_interface.h"
 //#include "cellapp/cellapp_interface.h"
-#include "proto/basedb.pb.h"
+#include "proto/common.pb.h"
+#include "proto/dbmgrlogin.pb.h"
+#include "proto/dbmgrbase.pb.h"
+#include "proto/dbmgrcell.pb.h"
+
+
 #include "../../server/baseapp/baseapp_interface.h"
-#include "proto/celldb.pb.h"
 #include "../../server/cellapp/cellapp_interface.h"
 
 namespace KBEngine{	
@@ -137,7 +141,7 @@ bool SyncAppDatasHandler::process()
 					std::pair<ENTITY_ID, ENTITY_ID> idRange = DBMgrApp::getSingleton().idServer().allocRange();
 
 					(*pBundle).newMessage(BaseappInterface::onDbmgrInitCompleted);
-					base_dbmgr::DbmgrInitCompleted dicCmd;
+					dbmgrbase::DbmgrBroadcastInitCompleted dicCmd;
 					dicCmd.set_g_kbetime(g_kbetime);
 					dicCmd.set_startentityid(idRange.first);
 					dicCmd.set_endentityid(idRange.second);
@@ -150,7 +154,7 @@ bool SyncAppDatasHandler::process()
 
 					std::pair<ENTITY_ID, ENTITY_ID> idRange = DBMgrApp::getSingleton().idServer().allocRange();
 					(*pBundle).newMessage(CellappInterface::onDbmgrInitCompleted);
-					cell_dbmgr::DbmgrInitCompleted dicCmd;
+					dbmgrcell::DbmgrBroadcastInitCompleted dicCmd;
 					dicCmd.set_g_kbetime(g_kbetime);
 					dicCmd.set_startentityid(idRange.first);
 					dicCmd.set_endentityid(idRange.second);

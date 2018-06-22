@@ -30,17 +30,17 @@
     <ClCompile Include="basemgr_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\proto\coms.pb.cc">
-      <Filter>pb</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\proto\bmb.pb.cc">
-      <Filter>pb</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\proto\lbm.pb.cc">
-      <Filter>pb</Filter>
-    </ClCompile>
     <ClCompile Include="baseapp.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\basemgrbase.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\basemgrlogin.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\proto\common.pb.cc">
+      <Filter>pb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="baseapp.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\basemgrbase.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\basemgrlogin.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\proto\common.pb.h">
+      <Filter>pb</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

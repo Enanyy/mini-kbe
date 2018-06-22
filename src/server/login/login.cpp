@@ -9,9 +9,10 @@
 #include "server/components.h"
 #include <sstream>
 
-#include "proto/cl.pb.h"
-#include "proto/ldb.pb.h"
-#include "proto/lbm.pb.h"
+#include "proto/basemgrlogin.pb.h"
+#include "proto/clientlogin.pb.h"
+#include "proto/dbmgrlogin.pb.h"
+#include "proto/common.pb.h"
 #include "../../server/logger/logger_interface.h"
 #include "../../server/dbmgr/dbmgr_interface.h"
 #include "../../server/basemgr/basemgr_interface.h"
@@ -120,7 +121,7 @@ void LoginApp::onClientHello(Network::Channel* pChannel, MemoryStream& s)
 {
 	//printf("onClientHello memstr length:%d \n", s.length());
 
-	client_loginserver::Hello helloCmd;
+	clientlogin::Hello_Request helloCmd;
 	PARSEBUNDLE(s, helloCmd)
 	uint32 clientVersion = helloCmd.version();
 	const std::string& extradata = helloCmd.extradata();
@@ -129,7 +130,7 @@ void LoginApp::onClientHello(Network::Channel* pChannel, MemoryStream& s)
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	pBundle->newMessage(90, 2);
 	
-	client_loginserver::HelloCB helloCbCmd;
+	clientlogin::Hello_Return helloCbCmd;
 	helloCbCmd.set_result(1);
 	helloCbCmd.set_version(68);
 	helloCbCmd.set_extradata(extradata);
@@ -142,7 +143,7 @@ void LoginApp::onClientHello(Network::Channel* pChannel, MemoryStream& s)
 void LoginApp::Login(Network::Channel* pChannel, MemoryStream& s)
 {
 	//AUTO_SCOPED_PROFILE("login");
-	client_loginserver::Login loginCmd;
+	clientlogin::Login_Request loginCmd;
 	PARSEBUNDLE(s, loginCmd)
 
 	CLIENT_CTYPE ctype = loginCmd.has_ctype()?loginCmd.ctype(): UNKNOWN_CLIENT_COMPONENT_TYPE;
@@ -244,7 +245,7 @@ void LoginApp::Login(Network::Channel* pChannel, MemoryStream& s)
 	// 向dbmgr查询用户合法性
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	pBundle->newMessage(DbmgrInterface::onAccountLogin);
-	login_dbmgr::AccountLogin alCmd;
+	dbmgrlogin::AccountLogin_Request alCmd;
 	alCmd.set_accountname(accountName);
 	alCmd.set_password(password);
 	alCmd.set_extradata(datas);
@@ -256,7 +257,7 @@ void LoginApp::Login(Network::Channel* pChannel, MemoryStream& s)
 //-------------------------------------------------------------------------------------
 void LoginApp::_loginFailed(Network::Channel* pChannel, std::string& loginName, SERVER_ERROR_CODE failedcode, std::string& datas, bool force)
 {
-	INFO_MSG(fmt::format("Loginapp::loginFailed: loginName={0} login is failed. failedcode={1}, datas={2}.\n",
+	ERROR_MSG(fmt::format("Loginapp::loginFailed: loginName={0} login is failed. failedcode={1}, datas={2}.\n",
 		loginName, SERVER_ERR_STR[failedcode], datas));
 
 	PendingLoginMgr::PLInfos* infos = NULL;
@@ -270,8 +271,8 @@ void LoginApp::_loginFailed(Network::Channel* pChannel, std::string& loginName, 
 
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	(*pBundle).newMessage(90, 6);
-	client_loginserver::LoginFailed loginfailCmd;
-	loginfailCmd.set_failedcode(failedcode);
+	clientlogin::Login_Reutrn loginfailCmd;
+	loginfailCmd.set_result(failedcode);
 	loginfailCmd.set_extradata(datas);
 
 	ADDTOBUNDLE((*pBundle), loginfailCmd)
@@ -320,7 +321,7 @@ void LoginApp::onLoginAccountQueryResultFromDbmgr(Network::Channel* pChannel, Me
 	// accountName为本游戏服务器账号所绑定的终身名称
 	// 客户端得到baseapp地址的同时也会返回这个账号名称
 	// 客户端登陆baseapp应该使用这个账号名称登陆
-	login_dbmgr::AccountLoginQueryResult loginQueryResultCmd;
+	dbmgrlogin::AccountLogin_Return loginQueryResultCmd;
 	PARSEBUNDLE(s, loginQueryResultCmd)
 	loginName = loginQueryResultCmd.loginname();
 	accountName = loginQueryResultCmd.accountname();
@@ -368,7 +369,7 @@ void LoginApp::onLoginAccountQueryResultFromDbmgr(Network::Channel* pChannel, Me
 	{
 		Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 		pBundle->newMessage(BaseappmgrInterface::onRegisterPendingAccountEx);
-		login_basemgr::RegisterPendingAccountEx rpaeCmd;
+		basemgrlogin::PendingAccountEx_Request rpaeCmd;
 		rpaeCmd.set_loginname(loginName);
 		rpaeCmd.set_accountname(accountName);
 		rpaeCmd.set_password(password);
@@ -386,7 +387,7 @@ void LoginApp::onLoginAccountQueryResultFromDbmgr(Network::Channel* pChannel, Me
 		// 注册到baseapp并且获取baseapp的地址
 		Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 		pBundle->newMessage(BaseappmgrInterface::onRegisterPendingAccount);
-		login_basemgr::RegisterPendingAccount rpaCmd;
+		basemgrlogin::PendingAccount_Request rpaCmd;
 		rpaCmd.set_loginname(loginName);
 		rpaCmd.set_accountname(accountName);
 		rpaCmd.set_password(password);
@@ -407,7 +408,7 @@ void LoginApp::onLoginAccountQueryBaseappAddrFromBaseappmgr(Network::Channel* pC
 	std::string accountName;
 	std::string addr;
 	uint16 port;
-	login_basemgr::LoginAccountQueryBaseappAddrFromBaseappmgr laqbCmd;
+	basemgrlogin::LoginAccountBaseappAddr_Return laqbCmd;
 	PARSEBUNDLE(s, laqbCmd);
 	loginName = laqbCmd.loginname();
 	accountName = laqbCmd.accountname();
@@ -446,7 +447,8 @@ void LoginApp::onLoginAccountQueryBaseappAddrFromBaseappmgr(Network::Channel* pC
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	pBundle->newMessage(90, 7);
 
-	client_loginserver::LoginSuccessfully loginCBCmd;
+	clientlogin::Login_Reutrn loginCBCmd;
+	loginCBCmd.set_result(0);
 	loginCBCmd.set_accountname(accountName);
 	loginCBCmd.set_baseip(addr);
 	loginCBCmd.set_baseport(fport);
@@ -462,7 +464,7 @@ void LoginApp::onLoginAccountQueryBaseappAddrFromBaseappmgr(Network::Channel* pC
 void LoginApp::onBaseappInitProgress(Network::Channel* pChannel, MemoryStream& s)
 {
 	float progress;
-	login_basemgr::BaseappInitProgress bipCmd;
+	basemgrlogin::BaseappInitProgress bipCmd;
 	PARSEBUNDLE(s, bipCmd);
 	progress = (float)bipCmd.baseappsinitprogress()/100.0f;
 	if (progress > 1.f)
