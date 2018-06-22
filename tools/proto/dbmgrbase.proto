@@ -1,14 +1,14 @@
-package base_dbmgr;
+package dbmgrbase;
 
 //dbmgr -> base 6 - 1 //dbmgr向base返回ids
-message DbmgrInitCompleted {
+message DbmgrBroadcastInitCompleted {
 	optional uint32 g_kbetime = 1;
 	optional int32 startEntityID = 2;
 	optional int32 endEntityID = 3;
 }
 
 //dbmgr -> base 6 - 2 //dbmgr向所有base返回刚注册的app
-message GetEntityAppFromDbmgr {
+message DbmgrBroadcastNewApp {
 	optional int32 componentType = 1;
 	optional int32 uid = 2;
 	optional string username = 3;

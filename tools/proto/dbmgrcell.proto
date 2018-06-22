@@ -1,14 +1,14 @@
-package cell_dbmgr;
+package dbmgrcell;
 
 //dbmgr -> cell 7 - 1 //dbmgr向cell返回ids
-message DbmgrInitCompleted {
+message DbmgrBroadcastInitCompleted {
 	optional uint32 g_kbetime = 1;
 	optional int32 startEntityID = 2;
 	optional int32 endEntityID = 3;
 }
 
 //dbmgr -> cell 7 - 2 //dbmgr向所有cell返回刚注册的app
-message GetEntityAppFromDbmgr {
+message DbmgrBroadcastNewApp {
 	optional int32 componentType = 1;
 	optional int32 uid = 2;
 	optional string username = 3;

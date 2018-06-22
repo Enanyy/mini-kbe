@@ -1,14 +1,14 @@
-package login_dbmgr;
+package dbmgrlogin;
 
 //login -> dbmgr 2 - 1 //login向dbmgr查询用户合法性
-message AccountLogin {
+message AccountLogin_Request {
 	optional string accountName = 1;
 	optional string password = 2;
 	optional string extraData = 3;
 }
 
 //dbmgr -> login 2 - 2 //dbmgr向login返回查询用户合法性
-message AccountLoginQueryResult {
+message AccountLogin_Return {
 	optional uint32 retcode = 1;
 	optional string loginName = 2;
 	optional string accountName = 3;

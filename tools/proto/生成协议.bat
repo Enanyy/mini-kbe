@@ -1,8 +1,4 @@
-protoc coms.proto --cpp_out=../../src/lib/proto 
-protoc cl.proto --cpp_out=../../src/lib/proto 
-protoc ldb.proto --cpp_out=../../src/lib/proto 
-protoc lbm.proto --cpp_out=../../src/lib/proto 
-protoc bmb.proto --cpp_out=../../src/lib/proto 
-protoc basedb.proto --cpp_out=../../src/lib/proto 
-protoc celldb.proto --cpp_out=../../src/lib/proto 
+for %%i in (*.proto) do (  
+    protoc.exe  --cpp_out=../../src/lib/proto %%i      
+) 
 pause

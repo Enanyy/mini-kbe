@@ -1,7 +1,7 @@
-package servercommon;
+package common;
 
 //s-s 服务器组件间注册 1 - 1
-message RegisterSelf {
+message RegisterServer_Request {
   optional int32 componentType = 1;
   optional int32 uid = 2;
   optional string username = 3;
@@ -13,7 +13,7 @@ message RegisterSelf {
 }
 
 //s-s 服务器组件间注册 1 - 2 //注册返回
-message CBRegisterSelf {
+message RegisterServer_Return {
   required int32 result = 1;
   optional int32 componentType = 2;
   optional int32 uid = 3;

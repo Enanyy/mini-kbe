@@ -1,7 +1,7 @@
-package basemgr_base;
+package basemgrbase;
 
 //basemgr -> base 4 - 1 //basemgr向base登陆用户
-message registerPendingLogin {
+message PendingLoginBaseappAddr_Request {
 	optional string loginName = 1;
 	optional string accountName = 2;
 	optional string password = 3;
@@ -12,7 +12,7 @@ message registerPendingLogin {
 }
 
 //base -> basemgr 4 - 2 //base向basemgr返回玩家登陆base地址
-message PendingAccountGetBaseappAddr
+message PendingLoginBaseappAddr_Return
 {
 	optional string loginName = 1;
 	optional string accountName = 2;
