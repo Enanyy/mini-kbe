@@ -32,7 +32,7 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 #include "helper/sys_info.h"
 #include "resmgr/resmgr.h"
 
-#include "proto/coms.pb.h"
+#include "proto/common.pb.h"
 
 namespace KBEngine{
 COMPONENT_TYPE g_componentType = UNKNOWN_COMPONENT_TYPE;
@@ -314,7 +314,7 @@ void ServerApp::onAppActiveTick(Network::Channel* pChannel, MemoryStream& s)
 {
 	COMPONENT_TYPE componentType;
 	COMPONENT_ID componentID;
-	servercommon::ActiveTick activeCmd;
+	common::ActiveTick activeCmd;
 	PARSEBUNDLE(s, activeCmd)
 
 		componentType = (COMPONENT_TYPE)activeCmd.componenttype();

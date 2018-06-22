@@ -25,7 +25,7 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 #include "server/serverapp.h"
 #include "server/components.h"
 
-#include "proto/coms.pb.h"
+#include "proto/common.pb.h"
 #include "../../server/logger/logger_interface.h"
 #include "../../server/login/login_interface.h"
 #include "../../server/dbmgr/dbmgr_interface.h"
@@ -86,7 +86,7 @@ void ComponentActiveReportHandler::handleTimeout(TimerHandle handle, void * arg)
 					Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 					COMMON_NETWORK_MESSAGE(componentType, (*pBundle), onAppActiveTick);
 					
-					servercommon::ActiveTick activeCmd;
+					common::ActiveTick activeCmd;
 					activeCmd.set_componentid(g_componentID);
 					activeCmd.set_componenttype(g_componentType);
 

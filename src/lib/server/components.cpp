@@ -31,7 +31,7 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 #include "network/network_interface.h"
 #include "server/serverconfig.h"
 
-#include "proto/coms.pb.h"
+#include "proto/common.pb.h"
 #include "../../server/logger/logger_interface.h"
 #include "../../server/login/login_interface.h"
 #include "../../server/dbmgr/dbmgr_interface.h"
@@ -632,12 +632,12 @@ int Components::connectComponent(COMPONENT_TYPE rcomponentType, COMPONENT_ID rco
 		{
 			Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 			{
-				ERROR_MSG(fmt::format("[NetProtoStreamHandlerHandler]: register, compentType:{0}, name:{1}, \
+				INFO_MSG(fmt::format("Components::connectComponent: register, compentType:{0}, name:{1}, \
 				compentId:{2} \n", rcomponentType, COMPONENT_NAME_EX(rcomponentType), rcomponentID));
 
 				COMMON_NETWORK_MESSAGE(rcomponentType, (*pBundle), OnRegisterServer);
 
-				servercommon::RegisterSelf regCmd;
+				common::RegisterServer_Request regCmd;
 				regCmd.set_componentid(this->componentID());
 				regCmd.set_componenttype(this->componentType());
 				regCmd.set_uid(getUserUID());
@@ -691,24 +691,24 @@ void Components::onFoundAllComponents()
 
 void Components::OnRegisterServer(Network::Channel* pChannel, MemoryStream& s)
 {
-	servercommon::RegisterSelf regCmd;
-	PARSEBUNDLE(s, regCmd)
-		COMPONENT_TYPE componentType = (COMPONENT_TYPE)regCmd.componenttype();
-	uint32 uid = regCmd.uid();
-	COMPONENT_ID componentID = regCmd.componentid();
+	common::RegisterServer_Request cmd;
+	PARSEBUNDLE(s, cmd)
+		COMPONENT_TYPE componentType = (COMPONENT_TYPE)cmd.componenttype();
+	uint32 uid = cmd.uid();
+	COMPONENT_ID componentID = cmd.componentid();
 	uint32 extaddr = 0;
 
 	Network::Bundle* pBundle = Network::Bundle::ObjPool().createObject();
 	COMMON_NETWORK_MESSAGE(componentType, (*pBundle), CBRegisterServer);
 
-	servercommon::CBRegisterSelf cbregCmd;
+	common::RegisterServer_Return sendcmd;
 
 	if (!this->checkComponents(uid, componentID, componentType))
 	{
 		ERROR_MSG(fmt::format("checkComponents: The current process and {}(componentID={} uid={} conflict, the process will exit!\n"
 			"Can modify the components-CID and UID to avoid conflict 22.\n",
 			COMPONENT_NAME_EX((COMPONENT_TYPE)componentType), componentID, uid));
-		cbregCmd.set_result(2);
+		sendcmd.set_result(2);
 	}
 	else
 	{
@@ -717,37 +717,37 @@ void Components::OnRegisterServer(Network::Channel* pChannel, MemoryStream& s)
 		pChannel->componentID(componentID);
 		if (cinfos == NULL)
 		{
-			Components::getSingleton().addComponent(uid, regCmd.username().c_str(),
-				(KBEngine::COMPONENT_TYPE)componentType, componentID, regCmd.intaddr(), regCmd.intport(),
-				regCmd.has_extaddr() ? regCmd.extaddr() : 0, regCmd.has_extport() ? regCmd.extport() : 0, pChannel);
-			cbregCmd.set_result(0);
-			cbregCmd.set_uid(getUserUID());
-			cbregCmd.set_componentid(this->componentID());
-			cbregCmd.set_componenttype(this->componentType());
-			cbregCmd.set_username(COMPONENT_NAME_EX(this->componentType()));
-			cbregCmd.set_intaddr(pChannel->addr().ip);
-			cbregCmd.set_intport(pChannel->addr().port);
+			Components::getSingleton().addComponent(uid, cmd.username().c_str(),
+				(KBEngine::COMPONENT_TYPE)componentType, componentID, cmd.intaddr(), cmd.intport(),
+				cmd.has_extaddr() ? cmd.extaddr() : 0, cmd.has_extport() ? cmd.extport() : 0, pChannel);
+			sendcmd.set_result(0);
+			sendcmd.set_uid(getUserUID());
+			sendcmd.set_componentid(this->componentID());
+			sendcmd.set_componenttype(this->componentType());
+			sendcmd.set_username(COMPONENT_NAME_EX(this->componentType()));
+			sendcmd.set_intaddr(pChannel->addr().ip);
+			sendcmd.set_intport(pChannel->addr().port);
 		}
 		else //如果已经存在了
 		{
-			ERROR_MSG(fmt::format("ServerApp::onRegisterNewApp ERROR : componentName:{0}, "
+			ERROR_MSG(fmt::format("Components::OnRegisterServer ERROR : componentName:{0}, "
 				"componentID:{1}, intaddr:{2}, intport:{3} is exist.\n",
 				COMPONENT_NAME_EX((COMPONENT_TYPE)componentType), componentID, inet_ntoa((struct in_addr&)pChannel->addr().ip),
 				ntohs(pChannel->addr().port)));
 
-			cbregCmd.set_result(1);
+			sendcmd.set_result(1);
 		}
 	}
 
-	ADDTOBUNDLE((*pBundle), cbregCmd)
+	ADDTOBUNDLE((*pBundle), sendcmd)
 		pChannel->send(pBundle);
 }
 
 void Components::CBRegisterServer(Network::Channel* pChannel, MemoryStream& s)
 {
-	servercommon::CBRegisterSelf cbregCmd;
-	PARSEBUNDLE(s, cbregCmd)
-		uint32 result = cbregCmd.result();
+	common::RegisterServer_Return cmd;
+	PARSEBUNDLE(s, cmd)
+		uint32 result = cmd.result();
 	if (result > 0) // 大于0为失败码
 	{
 		//失败了
@@ -757,16 +757,16 @@ void Components::CBRegisterServer(Network::Channel* pChannel, MemoryStream& s)
 	}
 	else //ok
 	{
-		uint32 componentType = cbregCmd.componenttype();
-		uint32 uid = cbregCmd.uid();
-		COMPONENT_ID componentID = cbregCmd.componentid();
+		uint32 componentType = cmd.componenttype();
+		uint32 uid = cmd.uid();
+		COMPONENT_ID componentID = cmd.componentid();
 		ComponentInfos* cinfos = this->findComponent((
 			KBEngine::COMPONENT_TYPE)componentType, uid, componentID);
 		pChannel->componentID(componentID);
 
 		if (NULL == cinfos)
 		{
-			Components::getSingleton().addComponent(uid, cbregCmd.username().c_str(),
+			Components::getSingleton().addComponent(uid, cmd.username().c_str(),
 				(KBEngine::COMPONENT_TYPE)componentType, componentID, pChannel->addr().ip, pChannel->addr().port,
 				0, 0, pChannel);
 			needCompnentNum -= 1;

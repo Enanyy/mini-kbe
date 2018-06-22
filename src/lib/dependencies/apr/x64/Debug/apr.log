@@ -1,0 +1,153 @@
+﻿  apr_atomic.c
+atomic\win32\apr_atomic.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  dso.c
+dso\win32\dso.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_dso.h”: No such file or directory
+  apr_escape.c
+encoding\apr_escape.c(28): fatal error C1083: 无法打开包括文件: “apr_escape.h”: No such file or directory
+  buffer.c
+file_io\win32\buffer.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  copy.c
+file_io\unix\copy.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  dir.c
+file_io\win32\dir.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  fileacc.c
+file_io\unix\fileacc.c(17): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  filedup.c
+file_io\win32\filedup.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  filepath.c
+file_io\win32\filepath.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  filepath_util.c
+file_io\unix\filepath_util.c(20): fatal error C1083: 无法打开包括文件: “apr_want.h”: No such file or directory
+  filestat.c
+file_io\win32\filestat.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  filesys.c
+file_io\win32\filesys.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  flock.c
+file_io\win32\flock.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  fullrw.c
+file_io\unix\fullrw.c(17): fatal error C1083: 无法打开包括文件: “apr_file_io.h”: No such file or directory
+  mktemp.c
+file_io\unix\mktemp.c(49): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  open.c
+file_io\win32\open.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  pipe.c
+file_io\win32\pipe.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  readwrite.c
+file_io\win32\readwrite.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  seek.c
+file_io\win32\seek.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_file_io.h”: No such file or directory
+  tempdir.c
+file_io\unix\tempdir.c(16): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  正在生成代码...
+  正在编译...
+  proc_mutex.c
+locks\win32\proc_mutex.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  thread_cond.c
+locks\win32\thread_cond.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  thread_mutex.c
+locks\win32\thread_mutex.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  thread_rwlock.c
+locks\win32\thread_rwlock.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_pools.c
+memory\unix\apr_pools.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_app.c
+misc\win32\apr_app.c(38): fatal error C1083: 无法打开包括文件: “apr_general.h”: No such file or directory
+  charset.c
+misc\win32\charset.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  env.c
+misc\win32\env.c(18): fatal error C1083: 无法打开包括文件: “apr_want.h”: No such file or directory
+  errorcodes.c
+misc\unix\errorcodes.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_misc.h”: No such file or directory
+  getopt.c
+misc\unix\getopt.c(34): fatal error C1083: 无法打开包括文件: “apr_arch_misc.h”: No such file or directory
+  internal.c
+misc\win32\internal.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  misc.c
+misc\win32\misc.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  otherchild.c
+misc\unix\otherchild.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  rand.c
+misc\win32\rand.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  start.c
+misc\win32\start.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  utf8.c
+misc\win32\utf8.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  version.c
+misc\unix\version.c(17): fatal error C1083: 无法打开包括文件: “apr_version.h”: No such file or directory
+  common.c
+mmap\unix\common.c(26): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  mmap.c
+mmap\win32\mmap.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  inet_ntop.c
+network_io\unix\inet_ntop.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  正在生成代码...
+  正在编译...
+  inet_pton.c
+network_io\unix\inet_pton.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  multicast.c
+network_io\unix\multicast.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_networkio.h”: No such file or directory
+  sendrecv.c
+network_io\win32\sendrecv.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_networkio.h”: No such file or directory
+  sockaddr.c
+network_io\unix\sockaddr.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_networkio.h”: No such file or directory
+  socket_util.c
+network_io\unix\socket_util.c(17): fatal error C1083: 无法打开包括文件: “apr_network_io.h”: No such file or directory
+  sockets.c
+network_io\win32\sockets.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_networkio.h”: No such file or directory
+  sockopt.c
+network_io\win32\sockopt.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_networkio.h”: No such file or directory
+  apr_getpass.c
+passwd\apr_getpass.c(22): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  poll.c
+poll\unix\poll.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  pollcb.c
+poll\unix\pollcb.c(22): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  pollset.c
+poll\unix\pollset.c(22): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  select.c
+poll\unix\select.c(22): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_random.c
+random\unix\apr_random.c(23): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  sha2.c
+h:\workspace\mini-kbe\src\lib\dependencies\apr\random\unix\sha2.h(30): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  sha2_glue.c
+random\unix\sha2_glue.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  shm.c
+shmem\win32\shm.c(17): fatal error C1083: 无法打开包括文件: “apr_general.h”: No such file or directory
+  apr_cpystrn.c
+strings\apr_cpystrn.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_fnmatch.c
+strings\apr_fnmatch.c(56): fatal error C1083: 无法打开包括文件: “apr_file_info.h”: No such file or directory
+  apr_snprintf.c
+strings\apr_snprintf.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_strings.c
+strings\apr_strings.c(49): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  正在生成代码...
+  正在编译...
+  apr_strnatcmp.c
+strings\apr_strnatcmp.c(25): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  apr_strtok.c
+strings\apr_strtok.c(21): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_hash.c
+tables\apr_hash.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  apr_skiplist.c
+tables\apr_skiplist.c(26): fatal error C1083: 无法打开包括文件: “apr_skiplist.h”: No such file or directory
+  apr_tables.c
+tables\apr_tables.c(24): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  proc.c
+threadproc\win32\proc.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_threadproc.h”: No such file or directory
+  signals.c
+threadproc\win32\signals.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_threadproc.h”: No such file or directory
+  thread.c
+threadproc\win32\thread.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  threadpriv.c
+threadproc\win32\threadpriv.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_threadproc.h”: No such file or directory
+  time.c
+time\win32\time.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_atime.h”: No such file or directory
+  timestr.c
+time\win32\timestr.c(17): fatal error C1083: 无法打开包括文件: “apr_arch_atime.h”: No such file or directory
+  groupinfo.c
+user\win32\groupinfo.c(17): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  userinfo.c
+user\win32\userinfo.c(17): fatal error C1083: 无法打开包括文件: “apr_private.h”: No such file or directory
+  正在生成代码...

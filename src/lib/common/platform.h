@@ -197,6 +197,12 @@ namespace KBEngine
 #endif
 #endif
 
+#ifndef X64
+#if defined( _WIN64 ) || defined( __x86_64__ ) || defined( __amd64 ) || defined( __LP64__ )
+#define X64
+#endif
+
+#endif
 #ifdef X64
 #define KBE_ARCH "X64"
 #else

@@ -1,0 +1,71 @@
+﻿  importer.cc
+..\src\google\protobuf\compiler\importer.cc(48): fatal error C1083: 无法打开包括文件: “google/protobuf/compiler/importer.h”: No such file or directory
+  parser.cc
+..\src\google\protobuf\compiler\parser.cc(38): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/hash.h”: No such file or directory
+  descriptor.cc
+..\src\google\protobuf\descriptor.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/hash.h”: No such file or directory
+  descriptor.pb.cc
+..\src\google\protobuf\descriptor.pb.cc(5): fatal error C1083: 无法打开包括文件: “google/protobuf/descriptor.pb.h”: No such file or directory
+  descriptor_database.cc
+..\src\google\protobuf\descriptor_database.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/descriptor_database.h”: No such file or directory
+  dynamic_message.cc
+..\src\google\protobuf\dynamic_message.cc(66): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/hash.h”: No such file or directory
+  extension_set.cc
+..\src\google\protobuf\extension_set.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/hash.h”: No such file or directory
+  extension_set_heavy.cc
+..\src\google\protobuf\extension_set_heavy.cc(38): fatal error C1083: 无法打开包括文件: “google/protobuf/io/zero_copy_stream_impl_lite.h”: No such file or directory
+  generated_message_reflection.cc
+..\src\google\protobuf\generated_message_reflection.cc(37): fatal error C1083: 无法打开包括文件: “google/protobuf/descriptor.pb.h”: No such file or directory
+  generated_message_util.cc
+..\src\google\protobuf\generated_message_util.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/generated_message_util.h”: No such file or directory
+  coded_stream.cc
+..\src\google\protobuf\io\coded_stream.cc(41): fatal error C1083: 无法打开包括文件: “google/protobuf/io/coded_stream_inl.h”: No such file or directory
+  gzip_stream.cc
+..\src\google\protobuf\io\gzip_stream.cc(36): fatal error C1083: 无法打开包括文件: “config.h”: No such file or directory
+  printer.cc
+..\src\google\protobuf\io\printer.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/io/printer.h”: No such file or directory
+  strtod.cc
+..\src\google\protobuf\io\strtod.cc(31): fatal error C1083: 无法打开包括文件: “google/protobuf/io/strtod.h”: No such file or directory
+  tokenizer.cc
+..\src\google\protobuf\io\tokenizer.cc(91): fatal error C1083: 无法打开包括文件: “google/protobuf/io/tokenizer.h”: No such file or directory
+  zero_copy_stream.cc
+..\src\google\protobuf\io\zero_copy_stream.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/io/zero_copy_stream.h”: No such file or directory
+  zero_copy_stream_impl.cc
+..\src\google\protobuf\io\zero_copy_stream_impl.cc(47): fatal error C1083: 无法打开包括文件: “google/protobuf/io/zero_copy_stream_impl.h”: No such file or directory
+  zero_copy_stream_impl_lite.cc
+..\src\google\protobuf\io\zero_copy_stream_impl_lite.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/io/zero_copy_stream_impl_lite.h”: No such file or directory
+  message.cc
+..\src\google\protobuf\message.cc(37): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/hash.h”: No such file or directory
+  message_lite.cc
+..\src\google\protobuf\message_lite.cc(36): fatal error C1083: 无法打开包括文件: “google/protobuf/message_lite.h”: No such file or directory
+  正在生成代码...
+  正在编译...
+  reflection_ops.cc
+..\src\google\protobuf\reflection_ops.cc(38): fatal error C1083: 无法打开包括文件: “google/protobuf/reflection_ops.h”: No such file or directory
+  repeated_field.cc
+..\src\google\protobuf\repeated_field.cc(37): fatal error C1083: 无法打开包括文件: “google/protobuf/repeated_field.h”: No such file or directory
+  service.cc
+..\src\google\protobuf\service.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/service.h”: No such file or directory
+  atomicops_internals_x86_msvc.cc
+..\src\google\protobuf\stubs\atomicops_internals_x86_msvc.cc(37): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/atomicops.h”: No such file or directory
+  common.cc
+..\src\google\protobuf\stubs\common.cc(33): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/common.h”: No such file or directory
+  once.cc
+..\src\google\protobuf\stubs\once.cc(38): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/once.h”: No such file or directory
+  stringprintf.cc
+..\src\google\protobuf\stubs\stringprintf.cc(33): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/stringprintf.h”: No such file or directory
+  structurally_valid.cc
+..\src\google\protobuf\stubs\structurally_valid.cc(4): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/common.h”: No such file or directory
+  strutil.cc
+..\src\google\protobuf\stubs\strutil.cc(33): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/strutil.h”: No such file or directory
+  substitute.cc
+..\src\google\protobuf\stubs\substitute.cc(33): fatal error C1083: 无法打开包括文件: “google/protobuf/stubs/substitute.h”: No such file or directory
+  text_format.cc
+..\src\google\protobuf\text_format.cc(43): fatal error C1083: 无法打开包括文件: “google/protobuf/text_format.h”: No such file or directory
+  unknown_field_set.cc
+..\src\google\protobuf\unknown_field_set.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/unknown_field_set.h”: No such file or directory
+  wire_format.cc
+..\src\google\protobuf\wire_format.cc(39): fatal error C1083: 无法打开包括文件: “google/protobuf/wire_format.h”: No such file or directory
+  wire_format_lite.cc
+..\src\google\protobuf\wire_format_lite.cc(35): fatal error C1083: 无法打开包括文件: “google/protobuf/wire_format_lite_inl.h”: No such file or directory
+  正在生成代码...

@@ -553,6 +553,11 @@ void DebugHelper::print_msg(const std::string& s)
 		LOG4CXX_INFO(g_logger, s);
 #endif
 
+#if KBE_PLATFORM == PLATFORM_WIN32
+	DebugHelper::getSingleton().set_normalcolor();
+	printf("[INFO]: %s!\n",s.c_str());
+	DebugHelper::getSingleton().set_normalcolor();
+#endif
 	//onMessage(KBELOG_PRINT, s.c_str(), s.size());
 }
 

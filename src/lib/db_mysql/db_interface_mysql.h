@@ -31,12 +31,22 @@ along with KBEngine.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "mysql/mysql.h"
 #if KBE_PLATFORM == PLATFORM_WIN32
+#if X64
 #ifdef _DEBUG
-#pragma comment (lib, "libmysql_d.lib")
-#pragma comment (lib, "mysqlclient_d.lib")
+#pragma comment (lib, "libmysql64_d.lib")
+#pragma comment (lib, "mysqlclient64_d.lib")
 #else
-#pragma comment (lib, "libmysql.lib")
-#pragma comment (lib, "mysqlclient.lib")
+#pragma comment (lib, "libmysql64.lib")
+#pragma comment (lib, "mysqlclient64.lib")
+#endif
+#else
+#ifdef _DEBUG
+#pragma comment (lib, "libmysql32_d.lib")
+#pragma comment (lib, "mysqlclient32_d.lib")
+#else
+#pragma comment (lib, "libmysql32.lib")
+#pragma comment (lib, "mysqlclient32.lib")
+#endif
 #endif
 #endif
 

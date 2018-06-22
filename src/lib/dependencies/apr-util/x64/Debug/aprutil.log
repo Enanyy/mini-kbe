@@ -1,0 +1,116 @@
+﻿  apr_brigade.c
+buckets\apr_brigade.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_buckets.c
+buckets\apr_buckets.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_alloc.c
+buckets\apr_buckets_alloc.c(19): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_eos.c
+buckets\apr_buckets_eos.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_file.c
+buckets\apr_buckets_file.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_buckets_flush.c
+buckets\apr_buckets_flush.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_heap.c
+buckets\apr_buckets_heap.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_mmap.c
+buckets\apr_buckets_mmap.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_pipe.c
+buckets\apr_buckets_pipe.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_pool.c
+buckets\apr_buckets_pool.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_refcount.c
+buckets\apr_buckets_refcount.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_simple.c
+buckets\apr_buckets_simple.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_buckets_socket.c
+buckets\apr_buckets_socket.c(17): fatal error C1083: 无法打开包括文件: “apr_buckets.h”: No such file or directory
+  apr_crypto.c
+crypto\apr_crypto.c(20): fatal error C1083: 无法打开包括文件: “apu_config.h”: No such file or directory
+  apr_md4.c
+crypto\apr_md4.c(41): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  apr_md5.c
+crypto\apr_md5.c(60): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  apr_passwd.c
+crypto\apr_passwd.c(17): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  apr_sha1.c
+crypto\apr_sha1.c(47): fatal error C1083: 无法打开包括文件: “apr_sha1.h”: No such file or directory
+  crypt_blowfish.c
+  getuuid.c
+crypto\getuuid.c(21): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  正在生成代码...
+  正在编译...
+  uuid.c
+crypto\uuid.c(19): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_dbd.c
+dbd\apr_dbd.c(20): fatal error C1083: 无法打开包括文件: “apu_config.h”: No such file or directory
+  apr_dbd_freetds.c
+dbd\apr_dbd_freetds.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbd_mysql.c
+dbd\apr_dbd_mysql.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbd_odbc.c
+dbd\apr_dbd_odbc.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbd_oracle.c
+dbd\apr_dbd_oracle.c(52): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbd_pgsql.c
+dbd\apr_dbd_pgsql.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbd_sqlite2.c
+dbd\apr_dbd_sqlite2.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbd_sqlite3.c
+dbd\apr_dbd_sqlite3.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_dbm.c
+dbm\apr_dbm.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_dbm_berkeleydb.c
+dbm\apr_dbm_berkeleydb.c(17): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  apr_dbm_gdbm.c
+dbm\apr_dbm_gdbm.c(17): fatal error C1083: 无法打开包括文件: “apu_config.h”: No such file or directory
+  apr_dbm_sdbm.c
+dbm\apr_dbm_sdbm.c(17): fatal error C1083: 无法打开包括文件: “apr_strings.h”: No such file or directory
+  apr_base64.c
+encoding\apr_base64.c(23): fatal error C1083: 无法打开包括文件: “apr_base64.h”: No such file or directory
+  apr_hooks.c
+hooks\apr_hooks.c(21): fatal error C1083: 无法打开包括文件: “apr_pools.h”: No such file or directory
+  apr_ldap_init.c
+ldap\apr_ldap_init.c(25): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_ldap_option.c
+ldap\apr_ldap_option.c(24): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_ldap_rebind.c
+ldap\apr_ldap_rebind.c(24): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_ldap_stub.c
+ldap\apr_ldap_stub.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_ldap_url.c
+ldap\apr_ldap_url.c(73): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  正在生成代码...
+  正在编译...
+  apr_memcache.c
+memcache\apr_memcache.c(17): fatal error C1083: 无法打开包括文件: “apr_memcache.h”: No such file or directory
+  apr_date.c
+misc\apr_date.c(28): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_queue.c
+misc\apr_queue.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  apr_reslist.c
+misc\apr_reslist.c(19): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_rmm.c
+misc\apr_rmm.c(17): fatal error C1083: 无法打开包括文件: “apr_general.h”: No such file or directory
+  apr_thread_pool.c
+misc\apr_thread_pool.c(20): fatal error C1083: 无法打开包括文件: “apr_thread_pool.h”: No such file or directory
+  apu_dso.c
+misc\apu_dso.c(20): fatal error C1083: 无法打开包括文件: “apu_config.h”: No such file or directory
+  apu_version.c
+misc\apu_version.c(17): fatal error C1083: 无法打开包括文件: “apr_general.h”: No such file or directory
+  sdbm.c
+dbm\sdbm\sdbm.c(25): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  sdbm_hash.c
+dbm\sdbm\sdbm_hash.c(26): fatal error C1083: 无法打开包括文件: “apr_sdbm.h”: No such file or directory
+  sdbm_lock.c
+dbm\sdbm\sdbm_lock.c(17): fatal error C1083: 无法打开包括文件: “apr_file_info.h”: No such file or directory
+  sdbm_pair.c
+dbm\sdbm\sdbm_pair.c(26): fatal error C1083: 无法打开包括文件: “apr_sdbm.h”: No such file or directory
+  apr_strmatch.c
+strmatch\apr_strmatch.c(17): fatal error C1083: 无法打开包括文件: “apr_strmatch.h”: No such file or directory
+  apr_uri.c
+uri\apr_uri.c(24): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  xlate.c
+xlate\xlate.c(17): fatal error C1083: 无法打开包括文件: “apu.h”: No such file or directory
+  apr_xml.c
+xml\apr_xml.c(17): fatal error C1083: 无法打开包括文件: “apr.h”: No such file or directory
+  正在生成代码...

@@ -288,6 +288,7 @@ __RECONNECT:
 //-------------------------------------------------------------------------------------
 bool DBInterfaceMysql::checkEnvironment()
 {
+	/*
 	std::string querycmd = "SHOW VARIABLES";
 	if(!query(querycmd.c_str(), querycmd.size(), true))
 	{
@@ -329,6 +330,8 @@ bool DBInterfaceMysql::checkEnvironment()
 	}
 	
 	return lower_case_table_names;
+	*/
+	return true;
 }
 
 //-------------------------------------------------------------------------------------
